@@ -34,15 +34,11 @@ export default function Home({
   );
 }
 
-export async function getStaticProps({
-  params,
-  locale = "en",
-}: GetStaticPropsContext<{ page: string }>) {
-  const urlPath = params?.page || "";
-
+export async function getStaticProps({ params, locale = "en" }) {
+  const path = (params.page || []).join("/");
   const page = await builder
     .get("page", {
-      userAttributes: { urlPath: `/${urlPath || ""}`, locale: locale },
+      userAttributes: { urlPath: `/${path}`, locale: locale },
       options: { data: { locale: locale } },
       cachebust: true,
     })
