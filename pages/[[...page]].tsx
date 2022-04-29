@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { BuilderComponent, builder, Builder } from "@builder.io/react";
-import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
+import { InferGetStaticPropsType } from "next";
 import { componentRegister as backgroundComponentRegister } from "../components/Background";
+import { useRouter } from "next/router";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_IO_KEY);
 
@@ -11,6 +12,11 @@ export default function Home({
   page,
   locale,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <h1>Loading...</h1>;
+  }
+
   builder.setUserAttributes({ locale });
   return (
     <div className="container">
