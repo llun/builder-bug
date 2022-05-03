@@ -6,14 +6,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "@builder.io/react": "^1.1.50",
-    "next": "latest",
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "@builder.io/react": "^1.1.51",
+    "next": "^12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.26",
-    "@types/react": "^18.0.6",
-    "typescript": "^4.6.3"
+    "@types/node": "^17.0.31",
+    "@types/react": "^18.0.8",
+    "typescript": "^4.6.4"
   }
 }

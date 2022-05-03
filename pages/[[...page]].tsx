@@ -68,6 +68,6 @@ export async function getStaticPaths() {
   const paths = pages.map((page) => page.data?.url);
   return {
     paths,
-    fallback: "blocking",
+    fallback: true,
   };
 }
