@@ -12,6 +12,10 @@ export default function Home({
   page,
   locale,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (!Builder.isEditing && !Builder.isPreviewing && !page) {
+    return <div>No content</div>;
+  }
+
   const router = useRouter();
   if (router.isFallback) {
     return <h1>Loading...</h1>;
