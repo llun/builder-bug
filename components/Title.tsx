@@ -5,12 +5,13 @@ interface Props {
 }
 
 export const Background = ({ title }: Props) => {
+  console.log("Title", title);
   return <div className="background-color">{title}</div>;
 };
 
 export async function componentRegister() {
   Builder.registerComponent(Background, {
-    name: "Background",
+    name: "Title",
     inputs: [
       {
         name: "title",
