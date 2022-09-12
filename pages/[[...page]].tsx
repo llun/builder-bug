@@ -1,17 +1,17 @@
 import Head from "next/head";
-import { BuilderComponent, builder, Builder } from "@builder.io/react";
-import { InferGetStaticPropsType } from "next";
-import { componentRegister } from "../components/Title";
 import { useRouter } from "next/router";
+import { InferGetStaticPropsType, NextPage } from "next";
+import { BuilderComponent, builder, Builder } from "@builder.io/react";
+import parser from "html-react-parser";
 
+import { componentRegister } from "../components/Title";
+
+const locale = "Default";
 builder.init(process.env.NEXT_PUBLIC_BUILDER_IO_KEY);
 
 componentRegister();
 
-export default function Home({
-  page,
-  locale,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+const Home: NextPage<{ page: any }> = ({ page }) => {
   if (!Builder.isEditing && !Builder.isPreviewing && !page) {
     return <div>No content</div>;
   }
@@ -47,9 +47,10 @@ export default function Home({
       </main>
     </div>
   );
-}
+};
+export default Home;
 
-export async function getStaticProps({ params, locale = "en" }) {
+export async function getStaticProps({ params }) {
   const path = (params.page || []).join("/");
   const page = await builder
     .get("page", {
@@ -62,7 +63,6 @@ export async function getStaticProps({ params, locale = "en" }) {
   return {
     props: {
       page,
-      locale,
     },
     revalidate: 30,
   };

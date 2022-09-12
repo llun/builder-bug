@@ -2,11 +2,16 @@ import { Builder } from "@builder.io/react";
 
 interface Props {
   title: string;
+  attributes: any;
 }
 
-export const Background = ({ title }: Props) => {
+export const Background = ({ title, attributes }: Props) => {
   console.log("Title", title);
-  return <div className="background-color">{title || "Title"}</div>;
+  return (
+    <div {...attributes} className={`background-color ${attributes.className}`}>
+      {title || "Title"}
+    </div>
+  );
 };
 
 export async function componentRegister() {
@@ -19,5 +24,6 @@ export async function componentRegister() {
         localized: true,
       },
     ],
+    noWrap: true,
   });
 }
