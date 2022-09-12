@@ -33,7 +33,12 @@ export default function Home({
         {page || Builder.isPreviewing || Builder.isEditing ? (
           <div>
             <div>
-              <BuilderComponent content={page} model="page" isChild />
+              <BuilderComponent
+                locale={locale}
+                content={page}
+                model="page"
+                isChild
+              />
             </div>
           </div>
         ) : (

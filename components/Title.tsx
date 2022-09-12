@@ -6,7 +6,7 @@ interface Props {
 
 export const Background = ({ title }: Props) => {
   console.log("Title", title);
-  return <div className="background-color">{title}</div>;
+  return <div className="background-color">{title || "Title"}</div>;
 };
 
 export async function componentRegister() {
@@ -16,6 +16,7 @@ export async function componentRegister() {
       {
         name: "title",
         type: "string",
+        localized: true,
       },
     ],
   });
