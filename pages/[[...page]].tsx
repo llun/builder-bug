@@ -6,12 +6,11 @@ import parser from "html-react-parser";
 
 import { componentRegister } from "../components/Title";
 
-const locale = "Default";
 builder.init(process.env.NEXT_PUBLIC_BUILDER_IO_KEY);
 
 componentRegister();
 
-const Home: NextPage<{ page: any }> = ({ page }) => {
+const Home: NextPage<{ page: any; locale: string }> = ({ page, locale }) => {
   if (!Builder.isEditing && !Builder.isPreviewing && !page) {
     return <div>No content</div>;
   }
@@ -50,7 +49,7 @@ const Home: NextPage<{ page: any }> = ({ page }) => {
 };
 export default Home;
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const path = (params.page || []).join("/");
   const page = await builder
     .get("page", {
@@ -63,6 +62,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       page,
+      locale,
     },
     revalidate: 30,
   };
