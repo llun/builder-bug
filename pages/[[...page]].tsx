@@ -55,7 +55,7 @@ export async function getStaticProps({ params }) {
   const page = await builder
     .get("page", {
       userAttributes: { urlPath: `/${path}`, locale: locale },
-      options: { data: { locale: locale } },
+      options: { locale, data: { locale: locale } },
       cachebust: true,
     })
     .toPromise();
