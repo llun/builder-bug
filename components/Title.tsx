@@ -21,7 +21,6 @@ export async function componentRegister() {
       {
         name: "title",
         type: "string",
-        localized: true,
       },
     ],
     noWrap: true,
